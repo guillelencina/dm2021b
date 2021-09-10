@@ -14,9 +14,9 @@ ftirar <- function( prob, qty )
 
 #defino los jugadores
 mejor      <-  0.7
-peloton    <-  ( 501:599 ) / 1000
+peloton    <-  ( 597:599 ) / 1000
 jugadores  <-  c( peloton, mejor ) #intencionalmente el mejor esta al final
-
+jugadores
 #veo que tiene el vector
 jugadores
 
@@ -24,7 +24,7 @@ jugadores
 mapply(  ftirar, jugadores, 10 )
 
 
-for(  tiros_libres  in c(10, 20, 50, 100, 200, 300, 400, 415, 500, 600, 700, 1000 ) )
+for(  tiros_libres  in c( 400, 415,420,430,450,500,600,800 ) )
 {
 
   primero_ganador  <- 0
@@ -33,7 +33,7 @@ for(  tiros_libres  in c(10, 20, 50, 100, 200, 300, 400, 415, 500, 600, 700, 100
   {
     vaciertos <- mapply( ftirar, jugadores, tiros_libres ) 
     mejor  <- which.max( vaciertos )
-    if( mejor == 100 )  primero_ganador <- primero_ganador + 1
+    if( mejor == 4 )  primero_ganador <- primero_ganador + 1
   }
 
   cat( tiros_libres, primero_ganador/10000, "\n" )

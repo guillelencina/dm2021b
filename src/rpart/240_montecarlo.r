@@ -7,10 +7,10 @@ require("parallel")
 require("rpart")
 
 #setwd( "M:\\" )
-setwd( "~/buckets/b1/crudoB/" )
+setwd( "G:\\Documents\\ITBA\\Modulo3\\" )
 
-ksemillas  <- c(102191, 200177, 410551, 552581, 892237) #reemplazar por las propias semillas
-ksemilla_extra  <- 950009  #reemplazar por una elegida en el momento
+ksemillas  <- c(100103, 100109, 100129, 100151, 100153) #reemplazar por las propias semillas
+ksemilla_extra  <- 100169  #reemplazar por una elegida en el momento
 
 #------------------------------------------------------------------------------
 
@@ -46,8 +46,8 @@ ArbolSimple  <- function( fold_test, data, param )
 
 ArbolEstimarGanancia  <- function( semilla, data, param )
 {
-  pct_test  <- 30/(30+70)
-  particionar( data, division=c(70,30), agrupa="clase_ternaria", seed=semilla )
+  pct_test  <- 20/(20+80)
+  particionar( data, division=c(80,20), agrupa="clase_ternaria", seed=semilla )
 
   ganancia_testing  <- ArbolSimple( 2, data, param )
 
@@ -63,7 +63,7 @@ ArbolesMontecarlo  <- function( data, param, semillas )
                           semillas, 
                           MoreArgs= list( data, param), 
                           SIMPLIFY= FALSE,
-                          mc.cores= 5 )  #se puede subir a 5 si posee Linux o Mac OS
+                          mc.cores= 1 )  #1 para windows se puede subir a 5 si posee Linux o Mac OS
 
   #devuelvo la primer ganancia y el promedio
   return( mean( unlist( ganancias ))  ) 

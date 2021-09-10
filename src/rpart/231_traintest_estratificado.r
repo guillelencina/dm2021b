@@ -18,12 +18,12 @@ particionar  <- function( data,  division, agrupa="",  campo="fold", start=1, se
 #------------------------------------------------------------------------------
 
 #Aqui se debe poner la carpeta de la computadora local
-setwd("M:\\")  #Establezco el Working Directory
+setwd("G:\\Documents\\ITBA\\Modulo3\\")  #Establezco el Working Directory
 
 #cargo los datos
 dataset  <- fread("./datasetsOri/paquete_premium_202011.csv")
 
-particionar( dataset, division=c(70,30), agrupa="clase_ternaria", seed= 102191 )  #Cambiar por la primer semilla de cada uno !
+particionar( dataset, division=c(20,80), agrupa="clase_ternaria", seed= 100103 )  #Cambiar por la primer semilla de cada uno !
 
 #genero el modelo
 modelo  <- rpart("clase_ternaria ~ .",
@@ -42,6 +42,6 @@ dataset[  , ganancia :=  ifelse( clase_ternaria=="BAJA+2", 48750, -1250 ) ]
 
 dataset[ fold==2 , prob_baja2 := prediccion[, "BAJA+2"] ]
 ganancia_test  <- dataset[ fold==2 & prob_baja2 > 0.025, sum(ganancia) ]
-ganancia_test_normalizada  <-  ganancia_test / 0.3
+ganancia_test_normalizada  <-  ganancia_test / 0.8
 
 ganancia_test_normalizada

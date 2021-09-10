@@ -1,7 +1,7 @@
 #Lo mismo que el arbol anterior, pero ahora calculo en forma automática la ganancia en los datos que entreno
 #limpio la memoria
-rm(list=ls())   #remove all objects
-gc()            #garbage collection
+rm(list=ls())   #remove all objects borra todos los objetas
+gc()            #garbage collection libera toda la memoria para poder usar y almacenar
 
 
 #Arbol elemental con libreria  rpart
@@ -9,7 +9,7 @@ require("data.table")
 require("rpart")
 require("rpart.plot")
 
-setwd("M:\\")  #Establezco el Working Directory
+setwd("G:\\Documents\\ITBA\\Modulo3\\")  #Establezco el Working Directory
 
 #cargo los datos
 dataset <- fread("./datasetsOri/paquete_premium_202011.csv")

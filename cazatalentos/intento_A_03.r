@@ -63,25 +63,29 @@ gimnasio_init()
 #Esta el la planilla del cazatalentos
 planilla_cazatalentos  <- data.table(  "id"=1:100 )
 
+for( q in c( 0.5,0.6,0.7,0.8) )
+for( x1 in c( 90,100,120,150) )
+for(x2 in c( 200,300,400,500))
 
+{
 #Ronda 1  ------------------------------------------------------
 #tiran los 100 jugadores es decir 1:100  90 tiros libres cada uno
 ids_juegan1  <- 1:100   #los jugadores que participan en la ronda,
 
-planilla_cazatalentos[ ids_juegan1,  tiros1 := 90 ]  #registro en la planilla que tiran 90 tiros
+planilla_cazatalentos[ ids_juegan1,  tiros1 := x1 ]  #registro en la planilla que tiran x1 tiros
 
 #Hago que tiren
-resultado1  <- gimnasio_tirar( ids_juegan1, 90)
+resultado1  <- gimnasio_tirar( ids_juegan1, x1)
 planilla_cazatalentos[ ids_juegan1,  aciertos1 := resultado1 ]  #registro en la planilla
 
 
 #Ronda 2 -------------------------------------------------------
 #los mejores 40 jugadores tiran 400 tiros cada uno
-mediana  <- planilla_cazatalentos[ ids_juegan1, quantile(aciertos1,probs = 0.1) ]
-ids_juegan2  <- planilla_cazatalentos[ ids_juegan1 ][aciertos1 >= mediana, id ]
+quantil  <- planilla_cazatalentos[ ids_juegan1, quantile(aciertos1,probs = q) ]
+ids_juegan2  <- planilla_cazatalentos[ ids_juegan1 ][aciertos1 >= quantil, id ]
 
-planilla_cazatalentos[ ids_juegan2,  tiros2 := 400 ]  #registro en la planilla que tiran 400 tiros
-resultado2  <- gimnasio_tirar( ids_juegan2, 400)
+planilla_cazatalentos[ ids_juegan2,  tiros2 := x2 ]  #registro en la planilla que tiran x2 tiros
+resultado2  <- gimnasio_tirar( ids_juegan2, x2)
 planilla_cazatalentos[ ids_juegan2,  aciertos2 := resultado2 ]  #registro en la planilla
 
 #El cazatalentos toma una decision, elige al que mas aciertos tuvo en la ronda2
@@ -100,3 +104,4 @@ veredicto
 
 #En el siguiente script veremos de hacer una Estimacion Montecarlo
 #De 10000 veces que el entrenador sigue esta estrategia, cuantas realmente le acierta
+}

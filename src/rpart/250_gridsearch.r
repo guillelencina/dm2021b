@@ -9,9 +9,9 @@ require("rlist")
 require("parallel")
 require("rpart")
 
-setwd( "M:\\" )
+setwd( "G:\\Documents\\ITBA\\Modulo3\\" )
 
-ksemillas  <- c(102191, 200177, 410551, 552581, 892237) #reemplazar por las propias semillas
+ksemillas  <- c(100103, 100109, 100129, 100151, 100153) #reemplazar por las propias semillas
 
 #------------------------------------------------------------------------------
 
@@ -85,10 +85,54 @@ ArbolesCrossValidation  <- function( data, param, qfolds, semilla )
 
 #cargo los datos donde voy a ENTRENAR el modelo
 dataset  <- fread("./datasetsOri/paquete_premium_202011.csv")
+###############agregado el 8-9-21##################
+param_basicos1 <- list( "cp"= -1, 
+                        
+                        "minsplit"= 200,
+                        
+                        "minbucket"= 100,
+                        
+                        "maxdepth"= 6 )
+
+gan1 <- ArbolesCrossValidation( dataset,
+                                
+                                param_basicos1,
+                                
+                                qfolds= 5, # 5-fold cross validation
+                                
+                                13 )  
+param_basicos2 <- list( "cp"= -1, 
+                        
+                        "minsplit"= 50,
+                        
+                        "minbucket"= 10,
+                        
+                        "maxdepth"= 6 )
+gan2 <- ArbolesCrossValidation( dataset,
+                                
+                                param_basicos2,
+                                
+                                qfolds= 5, # 5-fold cross validation
+                                
+                                2 )  
+
+gan1
+gan2
+
+
+###############agregado el 8-9-21##################
+
+
+
+
+
+
+
 
 
 for( vcp in c( -1, 0) ) 
 for( vmaxdepth in  c(4,5,6,7,8,10,12,14,16) )
+  #vminsplit in  c(2,4, 8, 10, 15, 20, 30, 50, 100, 150, 200, 300, 400 )
 for( vminsplit in  c(2,4, 8, 10, 15, 20, 30, 50, 100, 150, 200, 300, 400 ) )
 for( vminbucket  in  unique( as.integer(c(1,2,3,4,5,  vminsplit/10, vminsplit/5, vminsplit/3, vminsplit/2 )) ) )
 {

@@ -10,8 +10,8 @@ require("data.table")
 #cargo los datos
 #"dataset" es el nombre de la variable, podria haberse llamado con cualquier nombre
 #se debe cambiar la ruta
-dataset  <- fread("M:\\datasetsOri\\paquete_premium_202011.csv")
-
+dataset  <- fread("G:\\Documents\\ITBA\\Modulo3\\datasetsOri\\paquete_premium_202011.csv")
+dataset
 #El universo agrupado por  clase_ternaria
 ftable(dataset$clase_ternaria)
 
@@ -59,12 +59,26 @@ sum( dataset[ cliente_edad >33, ganancia] )
 #------------------------------------------------------------------------------
 #Acertando a una variable buena
 
-sum( dataset[ ctrx_quarter <= 20, ganancia] )
+sum( dataset[ cliente_edad<=33, ganancia] )
 
 dataset[  ctrx_quarter<=20,  .N,  clase_ternaria ]
 
-dataset[  ctrx_quarter<=20,  list( "neg"=sum(neg),  "pos"=sum(pos) ) ]
+dataset[  cliente_edad<=33,  list( "neg"=sum(neg),  "pos"=sum(pos) ) ]
+#-----------------------------------------------------------------------------
+setorder( dataset, ctrx_quarter ) #ordeno el dataset por valor ctrx
+dataset[ , ganancia_acumulada := cumsum( ganancia ) ]
+dataset[ , max(ganancia_acumulada) ]
+which.max( dataset$ganancia_acumulada )
 
+#------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
+#Acertando a otra variable buena
+
+
+setorder( dataset, ctrx_quarter ) #ordeno el dataset por valor ctrx
+dataset[ , ganancia_acumulada := cumsum( ganancia ) ]
+dataset[ , max(ganancia_acumulada) ]
+which.max( dataset$ganancia_acumulada )
 
 #------------------------------------------------------------------------------
 

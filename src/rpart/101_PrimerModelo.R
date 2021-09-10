@@ -3,7 +3,7 @@ require("data.table")
 require("rpart")
 
 #Aqui se debe poner la carpeta de la computadora local
-setwd("M:\\")  #Establezco el Working Directory
+setwd("G:/Documents/ITBA/Modulo3")  #Establezco el Working Directory
 
 #cargo los datos de 202011 que es donde voy a ENTRENAR el modelo
 dtrain  <- fread("./datasetsOri/paquete_premium_202011.csv")
@@ -35,3 +35,4 @@ entrega  <- dapply[   , list(numero_de_cliente, Predicted) ] #genero la salida
 
 #genero el archivo para Kaggle
 fwrite( entrega, file="./kaggle/K101_001.csv", sep="," )
+
