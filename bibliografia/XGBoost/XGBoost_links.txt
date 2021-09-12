@@ -1,0 +1,16 @@
+Links Interesantes sobre XGBoost
+
+Videos de Tianqi Chen explicando XGBoost
+https://www.youtube.com/watch?v=Vly8xGnNiWs
+https://www.youtube.com/watch?v=8Y-droPeKu8
+
+
+Videos del canal StatQuest sobre XGBoost
+https://www.youtube.com/watch?v=OtD8wVaFm6E
+https://www.youtube.com/watch?v=8b1JEDvenQU
+https://www.youtube.com/watch?v=ZVFeW798-2I
+https://www.youtube.com/watch?v=oRrKeUCEbq8
+
+
+Explicaciones sencillas
+https://machinelearningmastery.com/gentle-introduction-xgboost-applied-machine-learning/
