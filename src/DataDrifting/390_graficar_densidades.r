@@ -6,7 +6,7 @@ require("data.table")
 
 
 #Aqui comienza el programa
-setwd("~/buckets/b1/crudo/")
+setwd("G:/Documents/ITBA/Modulo3")
 
 datasetA  <- fread( "./datasetsOri/paquete_premium_202011.csv" )
 datasetB  <- fread( "./datasetsOri/paquete_premium_202101.csv" )

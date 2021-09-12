@@ -7,7 +7,7 @@ require("parallel")
 require("rpart")
 
 #setwd( "M:\\" )
-setwd( "~/buckets/b1/crudo/" )
+setwd( "G:/Documents/ITBA/Modulo3" )
 
 #Aqui van VEINTE semillas
 ksemillas  <- c(142297, 191507, 198839, 258707, 268091, 287047, 330557, 386333, 490619, 497239,
@@ -65,7 +65,7 @@ ArbolesMontecarlo  <- function( data, param, semillas, campos_quitar )
                           semillas, 
                           MoreArgs= list( data, param, campos_quitar), 
                           SIMPLIFY= FALSE,
-                          mc.cores= 5 )  #debe ser 1 si se tiene Windows
+                          mc.cores= 1 )  #debe ser 1 si se tiene Windows
 
   #devuelvo la primer ganancia y el promedio
   return( mean( unlist( ganancias ))  ) 

@@ -20,7 +20,7 @@ require("mlrMBO")
 
 
 #defino la carpeta donde trabajo
-setwd( "~/buckets/b1/crudo/"  )
+setwd( "G:/Documents/ITBA/Modulo3"  )
 
 
 kexperimento  <- NA   #NA si se corre la primera vez, un valor concreto si es para continuar procesando
@@ -36,7 +36,7 @@ hs  <- makeParamSet(
           makeIntegerParam("min.node.size" ,    lower=  1L  , upper=  500L),
           makeIntegerParam("mtry" ,             lower=  2L  , upper=   50L))
 
-ksemilla_azar  <- 102191  #Aqui poner la propia semilla
+ksemilla_azar  <- 100103  #Aqui poner la propia semilla
 #------------------------------------------------------------------------------
 #Funcion que lleva el registro de los experimentos
 
@@ -209,7 +209,8 @@ if( file.exists(klog) )
 
 #cargo el datset donde voy a entrenar
 dataset  <- fread(karch_generacion, stringsAsFactors= TRUE)   #donde entreno
-
+dataset[ , mpasivos_margen := NULL ]
+dataset[ , mactivos_margen := NULL ]
 dataset[ , clase_binaria := as.factor(ifelse( clase_ternaria=="BAJA+2", "POS", "NEG" )) ]
 dataset[ , clase_ternaria := NULL ]  #elimino la clase_ternaria, ya no la necesito
 #imputo los nulos, ya que ranger no acepta nulos

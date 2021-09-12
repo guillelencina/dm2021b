@@ -19,7 +19,7 @@ require("mlrMBO")
 
 
 #defino la carpeta donde trabajo
-setwd( "~/buckets/b1/crudo/"  )
+setwd( "G:/Documents/ITBA/Modulo3"  )
 
 
 kexperimento  <- NA   #NA si se corre la primera vez, un valor concreto si es para continuar procesando
@@ -37,7 +37,7 @@ hs  <- makeParamSet(
           forbidden = quote( minbucket > 0.5*minsplit ) )
 
 
-ksemilla_azar  <- 102191  #Aqui poner la propia semilla
+ksemilla_azar  <- 100103  #Aqui poner la propia semilla
 #------------------------------------------------------------------------------
 #Funcion que lleva el registro de los experimentos
 
@@ -121,7 +121,7 @@ ArbolesCrossValidation  <- function( data, param, qfolds, pagrupa, semilla )
                           seq(qfolds), # 1 2 3 4 5  
                           MoreArgs= list( data, param), 
                           SIMPLIFY= FALSE,
-                          mc.cores= 5 )   #se puede subir a 5 si posee Linux o Mac OS
+                          mc.cores= 1 )   #se puede subir a 5 si posee Linux o Mac OS
                                           #Se se usa Windows, obligatoriamente debe ser  1
 
   data[ , fold := NULL ]
@@ -196,6 +196,9 @@ if( file.exists(klog) )
 
 #cargo los datasets
 dataset  <- fread(karch_generacion)   #donde entreno
+dataset[ , mpasivos_margen := NULL]
+dataset[ clase_ternaria!="BAJA+2" , clase_ternaria := "NEGATIVO" ]
+#dataset[ , mactivos_margen := NULL ]
 dapply  <- fread(karch_aplicacion)    #donde aplico el modelo
 
 #Aqui comienza la configuracion de la Bayesian Optimization

@@ -6,7 +6,7 @@ require("data.table")
 
 
 #cargo los datasets que voy a comparar
-setwd("~/buckets/b1/crudo/" )  #establezco la carpeta donde voy a trabajar
+setwd("G:/Documents/ITBA/Modulo3" )  #establezco la carpeta donde voy a trabajar
 
 
 datasetA  <- fread( "./datasetsOri/paquete_premium_202011.csv" )

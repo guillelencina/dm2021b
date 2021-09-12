@@ -6,7 +6,7 @@ require("data.table")
 require("rpart")
 
 #Aqui se debe poner la carpeta de la computadora local
-setwd("~/buckets/b1/crudo/")  #Establezco el Working Directory
+setwd("G:/Documents/ITBA/Modulo3")  #Establezco el Working Directory
 
 #cargo los datos donde entreno
 dtrain  <- fread("./datasetsOri/paquete_premium_202011.csv")
