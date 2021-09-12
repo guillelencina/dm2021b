@@ -14,7 +14,7 @@ require("rpart")
 require("parallel")
 
 #paquetes necesarios para la Bayesian Optimization
-require("DiceKriging")
+require("DiceKriging")#es un tipo de reg lineal
 require("mlrMBO")
 
 

@@ -24,7 +24,7 @@ GLOBAL_tiros_total  <- 0
 #debajo de ese numero esta el indice_de_enceste  que NO puede ser visto por el cazatalentos
 gimnasio_init  <- function() 
 {
-  GLOBAL_jugadores  <<-  sample( c( (501:599 ) / 1000 , 0.7 ) )
+  GLOBAL_jugadores  <<-  sample( c( (509:529 ) / 1000 , 0.7 ) )
   GLOBAL_tiros_total  <<- 0
 }
 
@@ -61,28 +61,36 @@ Estrategia_A  <- function()
 
   #Esta el la planilla del cazatalentos
   #el id es el numero que tiene en la espalda cada jugador
-  planilla_cazatalentos  <- data.table( "id"= 1:100 )
-
+  planilla_cazatalentos  <- data.table( "id"= 1:20)
   #Ronda 1  ------------------------------------------------------
   #tiran los 100 jugadores es decir 1:100   90  tiros libres cada uno
-  ids_juegan1  <- 1:100   #los jugadores que participan en la ronda,
+  ids_juegan1  <- 1:20   #los jugadores que participan en la ronda,
 
-  planilla_cazatalentos[ ids_juegan1,  tiros1 := 90 ]  #registro en la planilla que tiran 90 tiros
+  planilla_cazatalentos[ ids_juegan1,  tiros1 := 70 ]  #registro en la planilla que tiran 90 tiros
 
   #Hago que tiren
-  resultado1  <- gimnasio_tirar( ids_juegan1, 90)
+  resultado1  <- gimnasio_tirar( ids_juegan1, 70)
   planilla_cazatalentos[ ids_juegan1,  aciertos1 := resultado1 ]  #registro en la planilla
 
   #Ronda 2 -------------------------------------------------------
   #A la mitad mejor la hago tirar 400 tiros cada uno
   #La mediana siempre parte a un conjunto en dos partes de igual cantidad
-  mediana  <- planilla_cazatalentos[ ids_juegan1, median(aciertos1) ]
-  ids_juegan2  <- planilla_cazatalentos[ ids_juegan1 ][ aciertos1 >= mediana, id ]
+  cuantil  <- planilla_cazatalentos[ ids_juegan1, quantile(aciertos1,0.01) ]
+  ids_juegan2  <- planilla_cazatalentos[ ids_juegan1 ][ aciertos1 >= cuantil, id ]
 
-  planilla_cazatalentos[ ids_juegan2,  tiros2 := 400 ]  #registro en la planilla que tiran 400 tiros
-  resultado2  <- gimnasio_tirar( ids_juegan2, 400)
+  planilla_cazatalentos[ ids_juegan2,  tiros2 := 140 ]  #registro en la planilla que tiran 400 tiros
+  resultado2  <- gimnasio_tirar( ids_juegan2, 140)
   planilla_cazatalentos[ ids_juegan2,  aciertos2 := resultado2 ]  #registro en la planilla
 
+  #promedio con los tiros de la ronda anteriores
+  
+  planilla_cazatalentos$aciertos2=(planilla_cazatalentos$aciertos2*planilla_cazatalentos$tiros2+
+                                     planilla_cazatalentos$aciertos1*planilla_cazatalentos$tiros1)/
+    (planilla_cazatalentos$tiros2+planilla_cazatalentos$tiros1)
+  #-------------------------------------------------------------------------------
+  
+  
+  
   #Epilogo
   #El cazatalentos toma una decision, elige al que mas aciertos tuvo en la ronda2
   pos_mejor <-  planilla_cazatalentos[ , which.max(aciertos2) ]

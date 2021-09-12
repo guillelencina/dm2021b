@@ -28,7 +28,7 @@ param2 <- list( "cp"= -1,
 
 
 # quito   mrentabilidad_annual   --------------------------------------------------------
-formulita <- "clase_ternaria ~ . -mrentabilidad_annual"
+formulita <- "clase_ternaria ~ .  -mcuenta_corriente"
 
 modelo1  <- rpart(formulita,
                   data= dtrain,
