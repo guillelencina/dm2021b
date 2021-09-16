@@ -1,4 +1,4 @@
-#Optimizacion Bayesiana de hiperparametros de  ranger
+#Optimizacion Bayesiana de hiperparametros de  ranger  GUILLE
 #funciona automaticamente con EXPERIMENTOS
 #va generando incrementalmente salidas para kaggle
 
