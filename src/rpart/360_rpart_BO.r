@@ -1,4 +1,4 @@
-#Optimizacion Bayesiana de hiperparametros de  rpart
+#Optimizacion Bayesiana de hiperparametros de  rpart    cambio guille 16/9 19hs
 #funciona automaticamente con EXPERIMENTOS
 #va generando incrementalmente salidas para kaggle
 
