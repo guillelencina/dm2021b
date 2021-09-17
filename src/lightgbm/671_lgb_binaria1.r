@@ -54,7 +54,7 @@ hs <- makeParamSet(
          makeNumericParam("prob_corte",       lower= 0.020, upper=    0.035)
         )
 
-campos_malos  <- c( "mpasivos_margen" )   #aqui se deben cargar todos los campos culpables del Data Drifting
+campos_malos  <- c( "mpasivos_margen","mrentabilidad_annual" )   #aqui se deben cargar todos los campos culpables del Data Drifting
 
 ksemilla_azar  <- 100103  #Aqui poner la propia semilla guille
 #------------------------------------------------------------------------------
