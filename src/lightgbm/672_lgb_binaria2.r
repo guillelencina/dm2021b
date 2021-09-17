@@ -1,4 +1,4 @@
-#Necesita para correr en Google Cloud
+#Necesita para correr en Google Cloud                Guille
 #16 GB de memoria RAM
 #256 GB de espacio en el disco local
 #8 vCPU
@@ -28,7 +28,7 @@ require("mlrMBO")
 #para poder usarlo en la PC y en la nube sin tener que cambiar la ruta
 #cambiar aqui las rutas en su maquina
 switch ( Sys.info()[['sysname']],
-         Windows = { directory.root  <-  "M:\\" },   #Windows
+         Windows = { directory.root  <-  "G:/Documents/ITBA/Modulo3" },   #Windows
          Darwin  = { directory.root  <-  "~/dm/" },  #Apple MAC
          Linux   = { directory.root  <-  "~/buckets/b1/" } #Google Cloud
        )
@@ -55,7 +55,7 @@ hs <- makeParamSet(
 
 campos_malos  <- c( "mpasivos_margen" )   #aqui se deben cargar todos los campos culpables del Data Drifting
 
-ksemilla_azar  <- 102191  #Aqui poner la propia semilla
+ksemilla_azar  <- 100103  #Aqui poner la propia semilla   guille
 #------------------------------------------------------------------------------
 #Funcion que lleva el registro de los experimentos
 
