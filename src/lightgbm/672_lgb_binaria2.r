@@ -1,4 +1,4 @@
-#Necesita para correr en Google Cloud                Guille
+#Necesita para correr en Google Cloud                Guille ej 9
 #16 GB de memoria RAM
 #256 GB de espacio en el disco local
 #8 vCPU
@@ -40,8 +40,8 @@ setwd( directory.root )
 kexperimento  <- NA   #NA si se corre la primera vez, un valor concreto si es para continuar procesando
 
 kscript           <- "672_lgb_binaria2"
-karch_generacion  <- "./datasetsOri/paquete_premium_202011.csv"
-karch_aplicacion  <- "./datasetsOri/paquete_premium_202101.csv"
+karch_generacion  <- "./datasetsOri/paquete_premium_202011_ext.csv"
+karch_aplicacion  <- "./datasetsOri/paquete_premium_202101_ext.csv"
 kBO_iter    <-  150   #cantidad de iteraciones de la Optimizacion Bayesiana
 
 #Aqui se cargan los hiperparametros
