@@ -1,4 +1,4 @@
-#Necesita para correr en Google Cloud           Guille ej 10 quito todos los data drifting 
+#Necesita para correr en Google Cloud           Guille ej 9 
 #16 GB de memoria RAM
 #256 GB de espacio en el disco local
 #8 vCPU
@@ -40,8 +40,8 @@ setwd( directory.root )
 kexperimento  <- NA   #NA si se corre la primera vez, un valor concreto si es para continuar procesando
 
 kscript           <- "672_lgb_binaria2"
-karch_generacion  <- "./datasetsOri/paquete_premium_202011.csv"
-karch_aplicacion  <- "./datasetsOri/paquete_premium_202101.csv"
+karch_generacion  <- "./datasets/paquete_premium_202011_ext.csv"
+karch_aplicacion  <- "./datasets/paquete_premium_202101_ext.csv"
 kBO_iter    <-  150   #cantidad de iteraciones de la Optimizacion Bayesiana
 
 #Aqui se cargan los hiperparametros
@@ -53,12 +53,7 @@ hs <- makeParamSet(
          makeNumericParam("prob_corte",       lower= 0.020, upper=    0.055)
         )
 
-campos_malos  <- c( "mpasivos_margen","mrentabilidad_annual","mtarjeta_visa_consumo",
-                    "ctarjeta_master_transacciones","mtarjeta_master_consumo",
-                    "cprestamos_personales","cpayroll_trx","mpayroll",
-                    "mttarjeta_visa_debitos_automaticos","ccajas_otras","Master_msaldototal",
-                    "Master_msaldopesos","Master_mconsumospesos","Master_mlimitecompra",
-                    "Master_mpagospesos","Master_mconsumototal","Visa_msaldototal","Visa_mpagado" )   #aqui se deben cargar todos los campos culpables del Data Drifting
+campos_malos  <- c( "mpasivos_margen","mrentabilidad_annual" )   #aqui se deben cargar todos los campos culpables del Data Drifting
 
 ksemilla_azar  <- 100103  #Aqui poner la propia semilla   guille
 #------------------------------------------------------------------------------

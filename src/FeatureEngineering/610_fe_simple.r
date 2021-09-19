@@ -11,7 +11,7 @@ require("data.table")
 
 
 #Establezco el Working Directory
-setwd( "~/buckets/b1/crudo" )
+setwd( "G:/Documents/ITBA/Modulo3" )
 
 
 EnriquecerDataset <- function( dataset , arch_destino )
