@@ -1,4 +1,4 @@
-#Necesita para correr en Google Cloud           Guille ej 9 hs extendidos 
+#Necesita para correr en Google Cloud           Guille ej 11 hs extendidos 
 #16 GB de memoria RAM
 #256 GB de espacio en el disco local
 #8 vCPU
