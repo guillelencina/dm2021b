@@ -1,4 +1,4 @@
-#Optimizacion Bayesiana de hiperparametros de  ranger
+#Optimizacion Bayesiana de hiperparametros de  ranger  #cambie prob corte a 0.010
 #funciona automaticamente con EXPERIMENTOS
 #va generando incrementalmente salidas para kaggle
 
@@ -34,7 +34,7 @@ hs <- makeParamSet(
          makeNumericParam("feature_fraction", lower= 0.2  , upper=    1.0),
          makeIntegerParam("min_data_in_leaf", lower= 0    , upper= 8000),
          makeIntegerParam("num_leaves",       lower=16L   , upper= 1024L),
-         makeNumericParam("prob_corte",       lower= 0.020, upper=    0.030)
+         makeNumericParam("prob_corte",       lower= 0.010, upper=    0.030)
         )
 
 ksemilla_azar  <- 102191  #Aqui poner la propia semilla

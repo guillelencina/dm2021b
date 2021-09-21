@@ -1,4 +1,4 @@
-#Feature Engineering
+#Feature Engineering                              #guille sin variables agregadas
 #creo nuevas variables dentro del mismo mes
 #Condimentar a gusto con nuevas variables
 
@@ -11,7 +11,7 @@ require("data.table")
 
 
 #Establezco el Working Directory
-setwd( "G:/Documents/ITBA/Modulo3" )
+setwd( "~/buckets/b1/" )
 
 
 EnriquecerDataset <- function( dataset , arch_destino )
