@@ -1,4 +1,4 @@
-#Necesita para correr en Google Cloud
+#Necesita para correr en Google Cloud  "exp 12 continua ==0 
 #16 GB de memoria RAM
 #256 GB de espacio en el disco local
 #4 vCPU
@@ -11,13 +11,13 @@ gc()             #garbage collection
 require("data.table")
 require("lightgbm")
 
-setwd("~/buckets/b1/")
+setwd("G:/Documents/ITBA/Modulo3")
 
 #cargo el dataset donde voy a entrenar
-dataset  <- fread("./datasetsOri/paquete_premium_202011.csv")
+dataset  <- fread("./datasets/paquete_premium_202011_ext.csv")
 
-#paso la clase a binaria que tome valores {0,1}  enteros
-dataset[ , clase01 := ifelse( clase_ternaria=="BAJA+2", 1L, 0L) ]
+#creo la clase_binaria2   1={ BAJA+2,BAJA+1}  0={CONTINUA}
+dataset[ , clase01 := ifelse( clase_ternaria=="CONTINUA", 0, 1) ]
 
 campos_malos  <- c("mpasivos_margen", "mactivos_margen")
 
@@ -31,12 +31,13 @@ dtrain  <- lgb.Dataset( data= data.matrix(  dataset[ , campos_buenos, with=FALSE
 
 #genero el modelo con los parametros por default
 modelo  <- lgb.train( data= dtrain,
-                      param=  list( objective= "binary", min_data_in_leaf= 4000 )
+                      param=  list( objective= "binary", min_data_in_leaf= 2850,learning_rate=0.015,feature_fraction=0.5,
+                                    num_leaves=26,num_iterations= 844)
                     )
 
 
 #aplico el modelo a los datos sin clase, 202101
-dapply  <- fread("./datasetsOri/paquete_premium_202101.csv")
+dapply  <- fread("./datasets/paquete_premium_202101_ext.csv")
 
 #aplico el modelo a los datos nuevos
 prediccion  <- predict( modelo, 
@@ -45,9 +46,9 @@ prediccion  <- predict( modelo,
 
 #Genero la entrega para Kaggle
 entrega  <- as.data.table( list( "numero_de_cliente"= dapply[  , numero_de_cliente],
-                                 "Predicted"= prediccion > 0.025)  ) #genero la salida
+                                 "Predicted"= prediccion > 0.05)  ) #genero la salida
 
 #genero el archivo para Kaggle
 fwrite( entrega, 
-        file= "./kaggle/lightgbm_613.csv", 
+        file= "./kaggle/lightgbm_613_exp12.csv", 
         sep= "," )
