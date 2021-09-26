@@ -32,7 +32,7 @@ require("mlrMBO")
 #para poder usarlo en la PC y en la nube sin tener que cambiar la ruta
 #cambiar aqui las rutas en su maquina
 switch ( Sys.info()[['sysname']],
-         Windows = { directory.root  <-  "M:\\" },   #Windows
+         Windows = { directory.root  <-  "G:/Documents/ITBA/Modulo3" },   #Windows
          Darwin  = { directory.root  <-  "~/dm/" },  #Apple MAC
          Linux   = { directory.root  <-  "~/buckets/b1/" } #Google Cloud
        )
@@ -63,7 +63,7 @@ hs <- makeParamSet(
          makeNumericParam("prob_corte",       lower=    0.040, upper=    0.055)
         )
 
-campos_malos  <- c( "mpasivos_margen" )   #aqui se deben cargar todos los campos culpables del Data Drifting
+campos_malos  <- c( "mpasivos_margen","mactivos_margen", "mrentabilidad_annual" )   #aqui se deben cargar todos los campos culpables del Data Drifting
 
 ksemilla_azar  <- 102191  #Aqui poner la propia semilla
 #------------------------------------------------------------------------------
@@ -158,7 +158,7 @@ EstimarGanancia_lightgbm  <- function( x )
 
   param_completo  <- c( param_basicos, param_variable, x )
 
-  set.seed( 999983 )
+  set.seed( 100103 )
   modelocv  <- lgb.cv( data= dtrain,
                        eval= fganancia_logistic_lightgbm,
                        stratified= TRUE, #sobre el cross validation
