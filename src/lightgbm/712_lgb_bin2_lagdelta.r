@@ -1,4 +1,4 @@
-#Necesita para correr en Google Cloud
+#Necesita para correr en Google Cloud  guille 26-09
 #32 GB de memoria RAM
 #256 GB de espacio en el disco local
 #8 vCPU
@@ -65,7 +65,7 @@ hs <- makeParamSet(
 
 campos_malos  <- c( )   #Intencionalmente VACIO
 
-ksemilla_azar  <- 102191  #Aqui poner la propia semilla
+ksemilla_azar  <- 100103  #Aqui poner la propia semilla
 #------------------------------------------------------------------------------
 #Funcion que lleva el registro de los experimentos
 
