@@ -1,6 +1,6 @@
 #Necesita para correr en Google Cloud
 #64 GB de memoria RAM
-#256 GB de espacio en el disco local
+#256 GB de espacio en el disco local            guille2609
 #8 vCPU
 
 
@@ -82,6 +82,15 @@ EnriquecerDataset <- function( dataset , arch_destino )
   dataset[ , mvr_mpagosdolares       := mv_mpagosdolares / mv_mlimitecompra ]
   dataset[ , mvr_mconsumototal       := mv_mconsumototal  / mv_mlimitecompra ]
   dataset[ , mvr_mpagominimo         := mv_mpagominimo  / mv_mlimitecompra ]
+  #agregados por mi
+  dataset[ , mvr_consumototal2       := mv_mconsumototal  / mv_msaldototal ]
+  dataset[ , mvr_consumo_saldo       := mvr_mconsumototal + mvr_msaldototal  ]
+  dataset[ , mvr_saldototal2         :=  mvr_msaldototal / mcuentas_saldo]
+  
+  dataset[ , mvr_consumototal3       := mv_mconsumototal  / mcuentas_saldo ]
+  dataset[ , mvr_cuentas_saldo       :=  mcuentas_saldo /mv_mlimitecompra  ]
+  dataset[ , mvr_consumo_saldo2      := mvr_consumo_saldo/mvr_cuentas_saldo ]
+  dataset[ , mv_pagado_minimo        := mv_mpagado- mv_mpagominimo]
 
   #valvula de seguridad para evitar valores infinitos
   #paso los infinitos a NULOS

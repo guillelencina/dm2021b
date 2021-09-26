@@ -1,4 +1,4 @@
-#Necesita para correr en Google Cloud
+#Necesita para correr en Google Cloud        guille 2609
 #32 GB de memoria RAM
 #256 GB de espacio en el disco local
 #8 vCPU
@@ -63,9 +63,9 @@ hs <- makeParamSet(
          makeNumericParam("prob_corte",       lower=    0.040, upper=    0.055)
         )
 
-campos_malos  <- c( "mpasivos_margen" )   #aqui se deben cargar todos los campos culpables del Data Drifting
+campos_malos  <- c( "mpasivos_margen","mactivos_margen", "mrentabilidad_annual" )   #aqui se deben cargar todos los campos culpables del Data Drifting
 
-ksemilla_azar  <- 102191  #Aqui poner la propia semilla
+ksemilla_azar  <- 100103  #Aqui poner la propia semilla
 #------------------------------------------------------------------------------
 #Funcion que lleva el registro de los experimentos
 
