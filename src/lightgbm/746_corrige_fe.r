@@ -200,7 +200,7 @@ dataset[ , glr_savingsage          := mcuentas_saldo/cliente_edad]
 dataset[ , glr_mpaytotalage        := gl_mpaytotal/cliente_edad]
 dataset[ , glr_cpaytotalage        := gl_cpaytotal/cliente_edad]
 dataset[ , glr_prompay             := gl_mpaytotal/gl_cpaytotal]
-dataset[ , gl_ageprompay           := gl_prompay*cliente_edad]
+dataset[ , gl_ageprompay           := glr_prompay*cliente_edad]
 dataset[ , glr_mpaymsaldo          := gl_mpaytotal/mcuentas_saldo]
 dataset[ , glr_mpaymquarter        := gl_mpaytotal/ctrx_quarter]
 ##debitos automaticos
