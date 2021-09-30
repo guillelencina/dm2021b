@@ -41,7 +41,7 @@ setwd( directory.root )
 
 
 
-kexperimento  <- NA   #NA si se corre la primera vez, un valor concreto si es para continuar procesando
+kexperimento  <- 1000   #NA si se corre la primera vez, un valor concreto si es para continuar procesando
 
 kscript         <- "751_lgb_bin2_histcorregido"
 
