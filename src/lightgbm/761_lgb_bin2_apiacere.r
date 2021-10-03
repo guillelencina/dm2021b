@@ -51,7 +51,7 @@ kmes_train_hasta <- 202011  #Obvimente, solo puedo entrenar hasta 202011
 
 kmes_train_desde <- 202001  #Entreno desde Enero-2020
 
-kcanaritos  <-  10
+kcanaritos  <-  100
 kBO_iter    <-  100   #cantidad de iteraciones de la Optimizacion Bayesiana
 
 #Aqui se cargan los hiperparametros
