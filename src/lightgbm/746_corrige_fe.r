@@ -1,4 +1,4 @@
-#Necesita para correr en Google Cloud    guille
+#Necesita para correr en Google Cloud    guille ej15 3-10-21
 #64 GB de memoria RAM
 #256 GB de espacio en el disco local
 #8 vCPU
@@ -200,12 +200,21 @@ dataset[ , glr_savingsage          := mcuentas_saldo/cliente_edad]
 dataset[ , glr_mpaytotalage        := gl_mpaytotal/cliente_edad]
 dataset[ , glr_cpaytotalage        := gl_cpaytotal/cliente_edad]
 dataset[ , glr_prompay             := gl_mpaytotal/gl_cpaytotal]
-dataset[ , gl_ageprompay           := glr_prompay*cliente_edad]
+dataset[ , gl_ageprompay           := gl_prompay*cliente_edad]
 dataset[ , glr_mpaymsaldo          := gl_mpaytotal/mcuentas_saldo]
 dataset[ , glr_mpaymquarter        := gl_mpaytotal/ctrx_quarter]
 ##debitos automaticos
-dataset[ , glr_mdebitos1        := mcuenta_debitos_automaticos/mcuentas_saldo]
-dataset[ , glr_mdebitos2        := mcuenta_debitos_automaticos/mv_msaldototal]
+dataset[ , glr_mdebitos1           := mcuenta_debitos_automaticos/mcuentas_saldo]
+dataset[ , glr_mdebitos2           := mcuenta_debitos_automaticos/mv_msaldototal]
+## antiguedad
+dataset[ , gl_antiguedad_rentab           := cliente_antiguedad*mrentabilidad]
+dataset[ , gl_antiguedad_rentabanual      := cliente_antiguedad*mrentabilidad_annual]
+dataset[ , gl_antiguedad_mcuentasaldo     := cliente_antiguedad*mcuentas_saldo]
+dataset[ , gl_antiguedad_ctarjdebtrx      := cliente_antiguedad*ctarjeta_debito_transacciones]
+dataset[ , gl_antiguedad_mpaytotal        := cliente_antiguedad*gl_mpaytotal]
+dataset[ , gl_antiguedad_cpaytotal        := cliente_antiguedad*gl_cpaytotal]
+dataset[ , gl_antiguedad_ctrx_quarter     := cliente_antiguedad*ctrx_quarter]
+dataset[ , gl_antiguedad_mv_mconsumototal := cliente_antiguedad*mv_mconsumototal/mv_mlimitecompra]
 
 #valvula de seguridad para evitar valores infinitos
 #paso los infinitos a NULOS
