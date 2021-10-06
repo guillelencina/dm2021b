@@ -22,7 +22,7 @@ setwd( directory.root )
 
 palancas  <- list()  #variable con las palancas para activar/desactivar
 
-palancas$version  <- "v18"   #Muy importante, ir cambiando la version
+palancas$version  <- "v19"   #Muy importante, ir cambiando la version
 
 palancas$variablesdrift  <- c()   #aqui van las columnas que se quieren eliminar
 
@@ -33,8 +33,8 @@ palancas$nuevasvars <-  TRUE  #si quiero hacer Feature Engineering manual
 palancas$dummiesNA  <-  FALSE #La idea de Santiago Dellachiesa
 
 palancas$lag1   <- TRUE    #lag de orden 1
-palancas$delta1 <- TRUE    # campo -  lag de orden 1 
-palancas$lag2   <- FALSE
+palancas$delta1 <- FALSE# campo -  lag de orden 1 
+palancas$lag2   <- TRUE    
 palancas$delta2 <- FALSE
 palancas$lag3   <- FALSE
 palancas$delta3 <- FALSE
@@ -56,9 +56,9 @@ palancas$maximo3  <- FALSE#maximo de los ultimos 3 meses
 palancas$maximo6  <- FALSE
 
 palancas$ratiomax3   <- FALSE#La idea de Daiana Sparta
-palancas$ratiomean6  <- FALSE#Un derivado de la idea de Daiana Sparta
+palancas$ratiomean6  <- TRUE    #Un derivado de la idea de Daiana Sparta
 
-palancas$tendencia6  <- TRUE    #Great power comes with great responsability
+palancas$tendencia6  <- FALSE #Great power comes with great responsability
 
 palancas$canaritosimportancia  <- TRUE  #si me quedo solo con lo mas importante de canaritosimportancia
 
