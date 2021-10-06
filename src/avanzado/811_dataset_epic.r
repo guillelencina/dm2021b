@@ -22,7 +22,7 @@ setwd( directory.root )
 
 palancas  <- list()  #variable con las palancas para activar/desactivar
 
-palancas$version  <- "v17"   #Muy importante, ir cambiando la version
+palancas$version  <- "v18"   #Muy importante, ir cambiando la version
 
 palancas$variablesdrift  <- c()   #aqui van las columnas que se quieren eliminar
 
@@ -49,10 +49,10 @@ palancas$delta6 <- FALSE
 palancas$promedio3  <- FALSE #promedio  de los ultimos 3 meses
 palancas$promedio6  <- FALSE
 
-palancas$minimo3  <- TRUE #minimo de los ultimos 3 meses
+palancas$minimo3  <- FALSE#minimo de los ultimos 3 meses
 palancas$minimo6  <- FALSE
 
-palancas$maximo3  <- TRUE #maximo de los ultimos 3 meses
+palancas$maximo3  <- FALSE#maximo de los ultimos 3 meses
 palancas$maximo6  <- FALSE
 
 palancas$ratiomax3   <- FALSE#La idea de Daiana Sparta
@@ -299,14 +299,14 @@ AgregarVariables  <- function( dataset )
   dataset[ , glr_mdebitos1           := mcuenta_debitos_automaticos/mcuentas_saldo]
   dataset[ , glr_mdebitos2           := mcuenta_debitos_automaticos/mv_msaldototal]
   ## antiguedad
-  dataset[ , gl_antiguedad_rentab           := cliente_antiguedad*mrentabilidad]
-  dataset[ , gl_antiguedad_rentabanual      := cliente_antiguedad*mrentabilidad_annual]
-  dataset[ , gl_antiguedad_mcuentasaldo     := cliente_antiguedad*mcuentas_saldo]
-  dataset[ , gl_antiguedad_ctarjdebtrx      := cliente_antiguedad*ctarjeta_debito_transacciones]
-  dataset[ , gl_antiguedad_mpaytotal        := cliente_antiguedad*gl_mpaytotal]
-  dataset[ , gl_antiguedad_cpaytotal        := cliente_antiguedad*gl_cpaytotal]
-  dataset[ , gl_antiguedad_ctrx_quarter     := cliente_antiguedad*ctrx_quarter]
-  dataset[ , gl_antiguedad_mv_mconsumototal := cliente_antiguedad*mv_mconsumototal/mv_mlimitecompra]
+  #dataset[ , gl_antiguedad_rentab           := cliente_antiguedad*mrentabilidad]
+  #dataset[ , gl_antiguedad_rentabanual      := cliente_antiguedad*mrentabilidad_annual]
+  #dataset[ , gl_antiguedad_mcuentasaldo     := cliente_antiguedad*mcuentas_saldo]
+  #dataset[ , gl_antiguedad_ctarjdebtrx      := cliente_antiguedad*ctarjeta_debito_transacciones]
+  #dataset[ , gl_antiguedad_mpaytotal        := cliente_antiguedad*gl_mpaytotal]
+  #dataset[ , gl_antiguedad_cpaytotal        := cliente_antiguedad*gl_cpaytotal]
+  #dataset[ , gl_antiguedad_ctrx_quarter     := cliente_antiguedad*ctrx_quarter]
+  #dataset[ , gl_antiguedad_mv_mconsumototal := cliente_antiguedad*mv_mconsumototal/mv_mlimitecompra]
   #valvula de seguridad para evitar valores infinitos
   #paso los infinitos a NULOS
   infinitos      <- lapply(names(dataset),function(.name) dataset[ , sum(is.infinite(get(.name)))])
