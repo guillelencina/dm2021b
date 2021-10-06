@@ -57,7 +57,7 @@ palancas$maximo6  <- FALSE
 palancas$ratiomax3   <- TRUE   #La idea de Daiana Sparta
 palancas$ratiomean6  <- TRUE   #Un derivado de la idea de Daiana Sparta
 
-palancas$tendencia3  <- TRUE    #Great power comes with great responsability
+palancas$tendencia6  <- TRUE    #Great power comes with great responsability
 
 
 palancas$canaritosimportancia  <- TRUE  #si me quedo solo con lo mas importante de canaritosimportancia
@@ -505,7 +505,7 @@ Rcpp::cppFunction('NumericVector fhistC(NumericVector pcolumna, IntegerVector pd
 Tendencia  <- function( dataset, cols )
 {
   #Esta es la cantidad de meses que utilizo para la historia
-  ventana_regresion  <- 3
+  ventana_regresion  <- 6
 
   last  <- nrow( dataset )
 
@@ -662,7 +662,7 @@ correr_todo  <- function( palancas )
   if(palancas$ratiomean6) RatioMean( dataset, cols_analiticas, 6) #Derivado de la idea de Daiana Sparta
 
 
-  if( palancas$tendencia3 )  Tendencia( dataset, cols_analiticas)
+  if( palancas$tendencia6 )  Tendencia( dataset, cols_analiticas)
 
 
   if( palancas$canaritosimportancia )  CanaritosImportancia( dataset )
