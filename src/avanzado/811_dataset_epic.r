@@ -22,7 +22,7 @@ setwd( directory.root )
 
 palancas  <- list()  #variable con las palancas para activar/desactivar
 
-palancas$version  <- "v002"   #Muy importante, ir cambiando la version
+palancas$version  <- "v16"   #Muy importante, ir cambiando la version
 
 palancas$variablesdrift  <- c()   #aqui van las columnas que se quieren eliminar
 
@@ -34,8 +34,8 @@ palancas$dummiesNA  <-  FALSE #La idea de Santiago Dellachiesa
 
 palancas$lag1   <- TRUE    #lag de orden 1
 palancas$delta1 <- TRUE    # campo -  lag de orden 1 
-palancas$lag2   <- FALSE
-palancas$delta2 <- FALSE
+palancas$lag2   <- TRUE
+palancas$delta2 <- TRUE
 palancas$lag3   <- FALSE
 palancas$delta3 <- FALSE
 palancas$lag4   <- FALSE
@@ -45,7 +45,7 @@ palancas$delta5 <- FALSE
 palancas$lag6   <- FALSE
 palancas$delta6 <- FALSE
 
-palancas$promedio3  <- FALSE  #promedio  de los ultimos 3 meses
+palancas$promedio3  <- TRUE  #promedio  de los ultimos 3 meses
 palancas$promedio6  <- FALSE
 
 palancas$minimo3  <- FALSE  #minimo de los ultimos 3 meses
@@ -276,7 +276,38 @@ AgregarVariables  <- function( dataset )
   dataset[ , mvr_mpagosdolares       := mv_mpagosdolares / mv_mlimitecompra ]
   dataset[ , mvr_mconsumototal       := mv_mconsumototal  / mv_mlimitecompra ]
   dataset[ , mvr_mpagominimo         := mv_mpagominimo  / mv_mlimitecompra ]
-
+  #agregados por mi
+  dataset[ , mvr_consumototal2       := mv_mconsumototal  / mv_msaldototal ]
+  dataset[ , mvr_consumo_saldo       := mvr_mconsumototal + mvr_msaldototal  ]
+  dataset[ , mvr_saldototal2         :=  mvr_msaldototal / mcuentas_saldo]
+  
+  dataset[ , mvr_consumototal3       := mv_mconsumototal  / mcuentas_saldo ]
+  dataset[ , mvr_cuentas_saldo       :=  mcuentas_saldo /mv_mlimitecompra  ]
+  dataset[ , mvr_consumo_saldo2      := mvr_consumo_saldo/mvr_cuentas_saldo ]
+  dataset[ , mv_pagado_minimo        := mv_mpagado- mv_mpagominimo]
+  ##relacionadas con la edad
+  dataset[ , gl_agepayroll           := cliente_edad*(mpayroll+mpayroll2)]
+  dataset[ , gl_mpaytotal            := (mpayroll+mpayroll2)]
+  dataset[ , gl_cpaytotal            := cpayroll_trx+cpayroll2_trx]
+  dataset[ , glr_savingsage          := mcuentas_saldo/cliente_edad]
+  dataset[ , glr_mpaytotalage        := gl_mpaytotal/cliente_edad]
+  dataset[ , glr_cpaytotalage        := gl_cpaytotal/cliente_edad]
+  dataset[ , glr_prompay             := gl_mpaytotal/gl_cpaytotal]
+  dataset[ , gl_ageprompay           := glr_prompay*cliente_edad]
+  dataset[ , glr_mpaymsaldo          := gl_mpaytotal/mcuentas_saldo]
+  dataset[ , glr_mpaymquarter        := gl_mpaytotal/ctrx_quarter]
+  ##debitos automaticos
+  dataset[ , glr_mdebitos1           := mcuenta_debitos_automaticos/mcuentas_saldo]
+  dataset[ , glr_mdebitos2           := mcuenta_debitos_automaticos/mv_msaldototal]
+  ## antiguedad
+  dataset[ , gl_antiguedad_rentab           := cliente_antiguedad*mrentabilidad]
+  dataset[ , gl_antiguedad_rentabanual      := cliente_antiguedad*mrentabilidad_annual]
+  dataset[ , gl_antiguedad_mcuentasaldo     := cliente_antiguedad*mcuentas_saldo]
+  dataset[ , gl_antiguedad_ctarjdebtrx      := cliente_antiguedad*ctarjeta_debito_transacciones]
+  dataset[ , gl_antiguedad_mpaytotal        := cliente_antiguedad*gl_mpaytotal]
+  dataset[ , gl_antiguedad_cpaytotal        := cliente_antiguedad*gl_cpaytotal]
+  dataset[ , gl_antiguedad_ctrx_quarter     := cliente_antiguedad*ctrx_quarter]
+  dataset[ , gl_antiguedad_mv_mconsumototal := cliente_antiguedad*mv_mconsumototal/mv_mlimitecompra]
   #valvula de seguridad para evitar valores infinitos
   #paso los infinitos a NULOS
   infinitos      <- lapply(names(dataset),function(.name) dataset[ , sum(is.infinite(get(.name)))])
