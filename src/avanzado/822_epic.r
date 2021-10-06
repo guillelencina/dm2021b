@@ -49,7 +49,7 @@ kexperimento  <- NA   #NA si se corre la primera vez, un valor concreto si es pa
 
 kscript         <- "822_epic"
 
-karch_dataset    <- "./datasets/dataset_epic_v16.csv.gz"
+karch_dataset    <- "./datasets/dataset_epic_v17.csv.gz"
 
 kapply_mes       <- c(202101)  #El mes donde debo aplicar el modelo
 
@@ -70,11 +70,11 @@ kBO_iter    <-  50   #cantidad de iteraciones de la Optimizacion Bayesiana
 
 #Aqui se cargan los hiperparametros
 hs <- makeParamSet( 
-         makeNumericParam("learning_rate",    lower=    0.02 , upper=    0.1),
-         makeNumericParam("feature_fraction", lower=    0.1  , upper=    1.0),
-         makeIntegerParam("min_data_in_leaf", lower=  100L   , upper= 8000L),
-         makeIntegerParam("num_leaves",       lower=  100L   , upper= 1024L)
-        )
+  makeNumericParam("learning_rate",    lower=    0.02 , upper=    0.1),
+  makeNumericParam("feature_fraction", lower=    0.1  , upper=    1.0),
+  makeIntegerParam("min_data_in_leaf", lower=  100L   , upper= 8000L),
+  makeIntegerParam("num_leaves",       lower=  100L   , upper= 1024L)
+)
 
 campos_malos  <- c()   #aqui se deben cargar todos los campos culpables del Data Drifting
 
