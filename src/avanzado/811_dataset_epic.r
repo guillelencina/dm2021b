@@ -34,8 +34,8 @@ palancas$dummiesNA  <-  FALSE #La idea de Santiago Dellachiesa
 
 palancas$lag1   <- TRUE    #lag de orden 1
 palancas$delta1 <- TRUE    # campo -  lag de orden 1 
-palancas$lag2   <- TRUE
-palancas$delta2 <- TRUE
+palancas$lag2   <- FALSE
+palancas$delta2 <- FALSE
 palancas$lag3   <- FALSE
 palancas$delta3 <- FALSE
 palancas$lag4   <- FALSE
@@ -54,10 +54,10 @@ palancas$minimo6  <- FALSE
 palancas$maximo3  <- FALSE  #maximo de los ultimos 3 meses
 palancas$maximo6  <- FALSE
 
-palancas$ratiomax3   <- FALSE   #La idea de Daiana Sparta
-palancas$ratiomean6  <- FALSE   #Un derivado de la idea de Daiana Sparta
+palancas$ratiomax3   <- TRUE   #La idea de Daiana Sparta
+palancas$ratiomean6  <- TRUE   #Un derivado de la idea de Daiana Sparta
 
-palancas$tendencia6  <- TRUE    #Great power comes with great responsability
+palancas$tendencia3  <- TRUE    #Great power comes with great responsability
 
 
 palancas$canaritosimportancia  <- TRUE  #si me quedo solo con lo mas importante de canaritosimportancia
@@ -505,7 +505,7 @@ Rcpp::cppFunction('NumericVector fhistC(NumericVector pcolumna, IntegerVector pd
 Tendencia  <- function( dataset, cols )
 {
   #Esta es la cantidad de meses que utilizo para la historia
-  ventana_regresion  <- 6
+  ventana_regresion  <- 3
 
   last  <- nrow( dataset )
 
@@ -662,7 +662,7 @@ correr_todo  <- function( palancas )
   if(palancas$ratiomean6) RatioMean( dataset, cols_analiticas, 6) #Derivado de la idea de Daiana Sparta
 
 
-  if( palancas$tendencia6 )  Tendencia( dataset, cols_analiticas)
+  if( palancas$tendencia3 )  Tendencia( dataset, cols_analiticas)
 
 
   if( palancas$canaritosimportancia )  CanaritosImportancia( dataset )
